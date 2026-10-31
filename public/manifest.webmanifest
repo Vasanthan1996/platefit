@@ -1,0 +1,10 @@
+{
+  "name": "PlateFit Meal Planner",
+  "short_name": "PlateFit",
+  "description": "Low-carb, high-protein South Indian meal planner, recipes and tracker.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4F6F1",
+  "theme_color": "#123D2A",
+  "icons": [{ "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}

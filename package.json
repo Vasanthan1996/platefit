@@ -1,0 +1,20 @@
+{
+  "name": "platefit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PlateFit: a low-carb, high-protein South Indian meal planner, recipe book and nutrition tracker. Vanilla JS front end, Vercel serverless API, Google Sheets database.",
+  "type": "module",
+  "engines": {
+    "node": ">=18.17"
+  },
+  "scripts": {
+    "dev": "node server.js",
+    "build": "node scripts/build.js",
+    "preview": "node scripts/build.js && node server.js --dist",
+    "setup:sheets": "node scripts/setup-sheets.js",
+    "hash-password": "node scripts/hash-password.js",
+    "test": "node --test tests/*.test.js",
+    "docs:recipes": "node scripts/gen-recipe-doc.mjs"
+  },
+  "license": "MIT"
+}

@@ -1,0 +1,66 @@
+/* Motion: loading, page transitions, scroll reveals, micro-interactions */
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fade-in { from { opacity: 0; } }
+@keyframes reveal { from { opacity: .55; transform: translateY(18px) scale(.985); } }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+@keyframes modal-in { from { opacity: 0; transform: translateY(18px) scale(.98); } }
+@keyframes toast-in { from { opacity: 0; transform: translateY(16px) scale(.96); } }
+@keyframes toast-out { to { opacity: 0; transform: translateX(30px); } }
+@keyframes ripple { to { transform: scale(4); opacity: 0; } }
+@keyframes shimmer { to { background-position: -200% 0; } }
+@keyframes grow-bar { from { width: 0; } }
+@keyframes ring-draw { from { stroke-dashoffset: var(--len); } }
+@keyframes heart-pop { 30% { transform: scale(1.35); } 60% { transform: scale(.9); } }
+@keyframes float { 50% { transform: translateY(-6px) rotate(-2deg); } }
+@keyframes steam { 0% { opacity: 0; transform: translateY(6px) scaleY(.8); } 40% { opacity: .7; } 100% { opacity: 0; transform: translateY(-14px) scaleY(1.1); } }
+@keyframes pulse-ring { 0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--turmeric) 55%, transparent); } 100% { box-shadow: 0 0 0 14px transparent; } }
+@keyframes check-pop { 0% { transform: scale(.6); } 60% { transform: scale(1.15); } }
+@keyframes confetti-fall { to { transform: translate(var(--dx), 110vh) rotate(var(--rot)); opacity: .9; } }
+@keyframes bar-up { from { transform: scaleY(0); } }
+@keyframes draw-line { from { stroke-dashoffset: var(--len, 1000); } }
+@keyframes plate-spin { to { transform: rotate(360deg); } }
+@keyframes splash-out { to { opacity: 0; visibility: hidden; } }
+
+/* Splash loader */
+.splash { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; background: var(--bg); }
+.splash.done { animation: splash-out .45s var(--ease) forwards; }
+.splash-inner { display: flex; flex-direction: column; align-items: center; gap: 14px; color: var(--muted); font-weight: 600; }
+.splash svg { width: 84px; height: 84px; }
+.splash .orbit { transform-origin: 50% 50%; animation: plate-spin 1.6s linear infinite; }
+
+/* Route transitions: content enters from a visible state quickly */
+.view.entering > * { animation: rise .45s var(--ease) both; }
+.view.entering > *:nth-child(2) { animation-delay: .05s; }
+.view.entering > *:nth-child(3) { animation-delay: .1s; }
+.view.entering > *:nth-child(4) { animation-delay: .15s; }
+.stagger > * { animation: rise .5s var(--ease) both; }
+.stagger > *:nth-child(2) { animation-delay: .04s; } .stagger > *:nth-child(3) { animation-delay: .08s; }
+.stagger > *:nth-child(4) { animation-delay: .12s; } .stagger > *:nth-child(5) { animation-delay: .16s; }
+.stagger > *:nth-child(6) { animation-delay: .2s; } .stagger > *:nth-child(7) { animation-delay: .24s; }
+.stagger > *:nth-child(8) { animation-delay: .28s; } .stagger > *:nth-child(n+9) { animation-delay: .3s; }
+
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .28s; }
+
+/* Scroll-driven reveal where supported. Items already on screen are at their end state. */
+@supports (animation-timeline: view()) {
+  [data-reveal] { animation: reveal linear both; animation-timeline: view(); animation-range: entry 0% entry 40%; }
+}
+
+.ring-track { stroke: var(--surface-3); }
+.ring-value { stroke-linecap: round; animation: ring-draw 1.3s var(--ease) both; }
+.chart-bar { transform-box: fill-box; transform-origin: bottom; animation: bar-up .9s var(--ease) both; }
+.chart-line { animation: draw-line 1.6s var(--ease) both; }
+.floaty { animation: float 5s ease-in-out infinite; }
+.steam path { animation: steam 2.6s ease-in-out infinite; }
+.steam path:nth-child(2) { animation-delay: .8s; }
+.steam path:nth-child(3) { animation-delay: 1.6s; }
+.pulse { animation: pulse-ring 1.8s infinite; }
+
+.confetti { position: fixed; inset: 0; pointer-events: none; z-index: 150; overflow: hidden; }
+.confetti i { position: absolute; top: -12px; width: 8px; height: 14px; border-radius: 2px; animation: confetti-fall var(--dur) cubic-bezier(.2, .6, .4, 1) forwards; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+  [data-reveal] { animation: none !important; }
+  .splash .orbit, .floaty, .steam path { animation: none !important; }
+}

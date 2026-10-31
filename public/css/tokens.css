@@ -1,0 +1,97 @@
+/* PlateFit design tokens.
+   Layout concept: an app shell with a banana-leaf green sidebar of time-of-day navigation,
+   content laid out like a thali: one main plate with small side bowls of stats.
+   Palette from the South Indian kitchen: leaf green, turmeric, chilli, steel tumbler grey. */
+:root {
+  /* colour */
+  --bg: #F4F6F1;
+  --surface: #FFFFFF;
+  --surface-2: #ECF0E8;
+  --surface-3: #E1E8DC;
+  --border: #D5DDCF;
+  --border-strong: #B9C6B2;
+  --text: #15201A;
+  --text-2: #3D4B42;
+  --muted: #5E6E63;
+  --leaf: #1F6B45;
+  --leaf-strong: #155234;
+  --leaf-soft: #DCEFE3;
+  --on-leaf: #F4FBF6;
+  --turmeric: #E8A317;
+  --turmeric-text: #8A5A00;
+  --turmeric-soft: #FCEFCF;
+  --chilli: #B8381F;
+  --chilli-soft: #F8E0D8;
+  --steel: #4A5A62;
+  --ok: #1F7A4D;
+  --warn: #9A6200;
+  --danger: #B8381F;
+  --kcal: #1F6B45;
+  --protein: #2B62A8;
+  --carbs: #C48A07;
+  --fat: #B8381F;
+  --sidebar: #123D2A;
+  --sidebar-text: #DCEBDF;
+  --sidebar-muted: #8FB09A;
+  --sidebar-active: #E8A317;
+  --shadow: 0 1px 2px rgba(21, 32, 26, .06), 0 8px 24px -12px rgba(21, 32, 26, .18);
+  --shadow-lift: 0 2px 4px rgba(21, 32, 26, .06), 0 18px 40px -18px rgba(21, 32, 26, .35);
+  --scrim: rgba(10, 20, 14, .55);
+  --focus: #E8A317;
+
+  /* type */
+  --font-display: 'Bricolage Grotesque', 'Trebuchet MS', system-ui, sans-serif;
+  --font-body: 'Figtree', 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-data: 'DM Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --step--1: .8125rem;
+  --step-0: 1rem;
+  --step-1: 1.1875rem;
+  --step-2: 1.5rem;
+  --step-3: 2rem;
+  --step-4: clamp(2.25rem, 4.2vw, 3.5rem);
+
+  /* shape and space */
+  --radius-s: 8px;
+  --radius: 14px;
+  --radius-l: 22px;
+  --gap: 16px;
+  --sidebar-w: 256px;
+  --topbar-h: 64px;
+  --ease: cubic-bezier(.2, .8, .2, 1);
+  --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D1410; --surface: #141E18; --surface-2: #1B271F; --surface-3: #243229; --border: #2A3A30; --border-strong: #3B4F42;
+    --text: #E6EEE8; --text-2: #C2D0C6; --muted: #93A89A;
+    --leaf: #4CC38A; --leaf-strong: #6FD7A3; --leaf-soft: #17352A; --on-leaf: #07170F;
+    --turmeric: #F2B83A; --turmeric-text: #F5C866; --turmeric-soft: #3A2D10;
+    --chilli: #F07A5F; --chilli-soft: #3D1E17; --steel: #A9BAC2;
+    --ok: #57C98F; --warn: #F2B83A; --danger: #F07A5F;
+    --kcal: #4CC38A; --protein: #7DB4F0; --carbs: #F2B83A; --fat: #F07A5F;
+    --sidebar: #0A120D; --sidebar-text: #D3E3D8; --sidebar-muted: #7E9A87; --sidebar-active: #F2B83A;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -12px rgba(0, 0, 0, .6);
+    --shadow-lift: 0 2px 4px rgba(0, 0, 0, .4), 0 18px 40px -18px rgba(0, 0, 0, .8);
+    --scrim: rgba(0, 0, 0, .65);
+    --focus: #F2B83A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D1410; --surface: #141E18; --surface-2: #1B271F; --surface-3: #243229; --border: #2A3A30; --border-strong: #3B4F42;
+  --text: #E6EEE8; --text-2: #C2D0C6; --muted: #93A89A;
+  --leaf: #4CC38A; --leaf-strong: #6FD7A3; --leaf-soft: #17352A; --on-leaf: #07170F;
+  --turmeric: #F2B83A; --turmeric-text: #F5C866; --turmeric-soft: #3A2D10;
+  --chilli: #F07A5F; --chilli-soft: #3D1E17; --steel: #A9BAC2;
+  --ok: #57C98F; --warn: #F2B83A; --danger: #F07A5F;
+  --kcal: #4CC38A; --protein: #7DB4F0; --carbs: #F2B83A; --fat: #F07A5F;
+  --sidebar: #0A120D; --sidebar-text: #D3E3D8; --sidebar-muted: #7E9A87; --sidebar-active: #F2B83A;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 8px 24px -12px rgba(0, 0, 0, .6);
+  --shadow-lift: 0 2px 4px rgba(0, 0, 0, .4), 0 18px 40px -18px rgba(0, 0, 0, .8);
+  --scrim: rgba(0, 0, 0, .65);
+  --focus: #F2B83A;
+  color-scheme: dark;
+}
+:root[data-theme="light"] { color-scheme: light; }
